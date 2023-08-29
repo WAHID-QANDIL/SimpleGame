@@ -227,10 +227,8 @@ int main()
 	} while (flag == 'Y' || flag == 'y');
 }
 ```
-![images](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/7790d3d9-6439-4d02-850e-9958a4ac2bb1)
-![1200px-Rock-paper-scissors svg](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/2e3b76fe-13de-4d2e-b60b-2aeb58f1c85c)
-![image](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/4eb9efc3-8f49-4674-ad3c-adc1f13083ca)
-![image](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/0e2d5189-e992-4fd2-bd59-7d00f46711aa)
+![images svg](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/7790d3d9-6439-4d02-850e-9958a4ac2bb1)
+![1200px-Rock-paper-scissors svg](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/2e3b76fe-13de-4d2e-b60b-2aeb58f1c85c) 
 
 # SimpleGame
 Simple game in c++ [ paper | stone | scissoer]
