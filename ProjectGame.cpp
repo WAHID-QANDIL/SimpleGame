@@ -1,5 +1,9 @@
 #include <iostream>
 #include <string>
+#include <Windows.h>
+#include <playsoundapi.h>
+#include <dsound.h>
+#pragma comment(lib,"Winmm.lib")
 using namespace std;
 int winPlayer1 = 0;
 int winPlayer2 = 0;
@@ -39,18 +43,20 @@ int winner(int c1, int c2)
 		{
 			player1choise = "paper";
 			player2choise = "paper";
+			return 0;
 		}
 		else if (c1 == 2)
 		{
 			player1choise = "stone";
 			player2choise = "stone";
+			return 0;
 		}
 		else
 		{
 			player1choise = "sciessor";
 			player2choise = "sciessor";
+			return 0;
 		}
-		return 0;
 	}
 	else if ((c1 == choices::paper && c2 == choices::stone))
 	{
@@ -122,17 +128,22 @@ void showCurrentState(int roundCount, int c1, int c2)
 	if (win == 1)
 	{
 		cout << "Player1" << endl;
-		system("Color A0");
+		system("Color 20");
+		PlaySound(L"1.wav", 0, 0);
+
+		//PlaySound(TEXT("C:\\Users\\hosam\\OneDrive - Delta Technological University\\Desktop\\I_O sound\\1.wav"), NULL, SND_SYNC);
+		//PlaySound(L"C:\\Users\\hosam\\OneDrive - Delta Technological University\\Desktop\\1.mp3", 0, 0);
 	}
 	else if (win == 2)
 	{
 		cout << "Computer" << endl;
 		system("Color 40");
+		PlaySound(L"2.wav", 0, 0);
 	}
 	else
 	{
 		cout << "Draw" << endl;
-		system("Color B0");
+		system("Color 60");
 	}
 	cout << "_______________________________________________________________________________" << endl;
 }
@@ -163,7 +174,7 @@ void endResult()
 			<< "_________________________________________________________________________________________" << endl;
 	}
 }
-char takeChar()
+bool takeChar()
 {
 	char c;
 	do
@@ -172,7 +183,11 @@ char takeChar()
 		cin >> c;
 		if (c == 'n' || c == 'N')
 		{
-			return 'N';
+			return 0;
+		}
+		else if (c == 'y' || c == 'Y')
+		{
+			return 1;
 		}
 	} while (c != 'Y' || c != 'y');
 }
@@ -182,6 +197,8 @@ int main()
 	char flag = 'Y';
 	do
 	{
+		system("cls");
+		system("Color 04");
 		srand(unsigned(time(NULL)));
 		cout << "How many times do you want ? : ";
 		int times;
@@ -198,6 +215,13 @@ int main()
 			showCurrentState(rcnt, p1, p2);
 		}
 		endResult();
-		flag = takeChar();
+		if (takeChar())
+		{
+			flag = 'Y';
+		}
+		else
+		{
+			flag = 'n';
+		}
 	} while (flag == 'Y' || flag == 'y');
 }
