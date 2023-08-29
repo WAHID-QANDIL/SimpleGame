@@ -36,7 +36,6 @@ int winner(int c1, int c2)
 {
 	if ((c1 == choices::paper && c2 == choices::paper) || (c1 == choices::sciessor && c2 == choices::sciessor) || (c1 == choices::stone && c2 == choices::stone))
 	{
-		draw++;
 		if (c1 == 1)
 		{
 			player1choise = "paper";
@@ -99,7 +98,18 @@ int winner(int c1, int c2)
 
 void scoorCount(int num)
 {
-	num == 1 ? ::winPlayer1++ : winPlayer2++;
+	if (num == 1)
+	{
+		winPlayer1++;
+	}
+	else if (num == 2)
+	{
+		winPlayer2++;
+	}
+	else
+	{
+		draw++;
+	}
 }
 
 void showCurrentState(int roundCount, int c1, int c2)
@@ -115,10 +125,15 @@ void showCurrentState(int roundCount, int c1, int c2)
 		cout << "Player1" << endl;
 		system("Color A0");
 	}
-	else
+	else if (win == 2)
 	{
 		cout << "Computer" << endl;
 		system("Color 40");
+	}
+	else
+	{
+		cout << "Draw" << endl;
+		system("Color B0");
 	}
 	cout << "_______________________________________________________________________________" << endl;
 }
@@ -154,15 +169,17 @@ int main()
 {
 	srand(unsigned(time(NULL)));
 	cout << "How many times do you want ? : ";
-	cin >> rounds;
+	int times;
+	cin >> times; rounds = times;
 	int rcnt = 0;
-	while (rounds--)
+	while (times--)
 	{
 		cout << "Round " << '[' << ++rcnt << ']' << " begins:\n" << endl;
 		showChoices();
 		int p1 = takeChoiseP1();
 		int p2 = takeChoiseP2();
-		winner(p1, p2);
+		int win = winner(p1, p2);
+		scoorCount(win);
 		showCurrentState(rcnt, p1, p2);
 	}
 	endResult();
