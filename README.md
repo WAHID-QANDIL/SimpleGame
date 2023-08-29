@@ -164,25 +164,43 @@ void endResult()
 			<< "_________________________________________________________________________________________" << endl;
 	}
 }
+char takeChar()
+{
+	char c;
+	do
+	{
+		cout << "\nDo you want play again ? [Y:y] or [N:n]to exit " << endl;
+		cin >> c;
+		if (c == 'n' || c == 'N')
+		{
+			return 'N';
+		}
+	} while (c != 'Y' || c != 'y');
+}
 
 int main()
 {
-	srand(unsigned(time(NULL)));
-	cout << "How many times do you want ? : ";
-	int times;
-	cin >> times; rounds = times;
-	int rcnt = 0;
-	while (times--)
+	char flag = 'Y';
+	do
 	{
-		cout << "Round " << '[' << ++rcnt << ']' << " begins:\n" << endl;
-		showChoices();
-		int p1 = takeChoiseP1();
-		int p2 = takeChoiseP2();
-		int win = winner(p1, p2);
-		scoorCount(win);
-		showCurrentState(rcnt, p1, p2);
-	}
-	endResult();
+		srand(unsigned(time(NULL)));
+		cout << "How many times do you want ? : ";
+		int times;
+		cin >> times; rounds = times;
+		int rcnt = 0;
+		while (times--)
+		{
+			cout << "Round " << '[' << ++rcnt << ']' << " begins:\n" << endl;
+			showChoices();
+			int p1 = takeChoiseP1();
+			int p2 = takeChoiseP2();
+			int win = winner(p1, p2);
+			scoorCount(win);
+			showCurrentState(rcnt, p1, p2);
+		}
+		endResult();
+		flag = takeChar();
+	} while (flag == 'Y' || flag == 'y');
 }
 ```
 ![image](https://github.com/WAHID-QANDIL/SimpleGame/assets/103429590/4eb9efc3-8f49-4674-ad3c-adc1f13083ca)
